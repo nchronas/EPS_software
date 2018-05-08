@@ -46,9 +46,11 @@
 #include "EPS_Board.h"
 
 extern void *mainThread(void *arg0);
+extern void *ecssThread(void *arg0);
+extern void *senThread(void *arg0);
 
 /* Stack size in bytes */
-#define THREADSTACKSIZE    4048
+#define THREADSTACKSIZE    4096
 
 /*
  *  ======== main ========
@@ -77,7 +79,7 @@ int main(void)
 
     pthread_attr_setschedparam(&attrs, &priParam);
 
-    retc |= pthread_attr_setstacksize(&attrs, THREADSTACKSIZE);
+    retc |= pthread_attr_setstacksize(&attrs, 4096);
     if (retc != 0) {
         /* pthread_attr_setstacksize() failed */
         while (1);
@@ -88,6 +90,66 @@ int main(void)
         /* pthread_create() failed */
         while (1);
     }
+
+    pthread_t           thread_ecss;
+    pthread_attr_t      attrs2;
+    struct sched_param  priParam2;
+
+    /* Set priority and stack size attributes */
+    pthread_attr_init(&attrs2);
+    priParam.sched_priority = 2;
+
+    detachState = PTHREAD_CREATE_DETACHED;
+    retc = pthread_attr_setdetachstate(&attrs2, detachState);
+    if (retc != 0) {
+        /* pthread_attr_setdetachstate() failed */
+        while (1);
+    }
+
+    pthread_attr_setschedparam(&attrs2, &priParam2);
+
+    retc |= pthread_attr_setstacksize(&attrs2, 1024);
+    if (retc != 0) {
+        /* pthread_attr_setstacksize() failed */
+        while (1);
+    }
+
+    /* Create ecss thread */
+    retc = pthread_create(&thread_ecss, &attrs2, ecssThread, (void* )0);
+    if (retc != 0) {
+        /* pthread_create() failed */
+        while (1);
+     }
+
+        pthread_t           thread_sen;
+        pthread_attr_t      attrs3;
+        struct sched_param  priParam3;
+
+        /* Set priority and stack size attributes */
+        pthread_attr_init(&attrs3);
+        priParam.sched_priority = 3;
+
+        detachState = PTHREAD_CREATE_DETACHED;
+        retc = pthread_attr_setdetachstate(&attrs3, detachState);
+        if (retc != 0) {
+            /* pthread_attr_setdetachstate() failed */
+            while (1);
+        }
+
+        pthread_attr_setschedparam(&attrs3, &priParam3);
+
+        retc |= pthread_attr_setstacksize(&attrs3, 1024);
+        if (retc != 0) {
+            /* pthread_attr_setstacksize() failed */
+            while (1);
+        }
+
+        /* Create ecss thread */
+        retc = pthread_create(&thread_sen, &attrs3, senThread, (void* )0);
+        if (retc != 0) {
+            /* pthread_create() failed */
+            while (1);
+         }
 
     BIOS_start();
 
