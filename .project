@@ -83,6 +83,16 @@
 			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/core/hldlc.c</locationURI>
 		</link>
 		<link>
+			<name>ttc/housekeeping.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/delfiPQ/EPS/housekeeping.c</locationURI>
+		</link>
+		<link>
+			<name>ttc/housekeeping_service.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/services/housekeeping_service.c</locationURI>
+		</link>
+		<link>
 			<name>ttc/osal.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/delfiPQ/OSAL/osal.c</locationURI>
