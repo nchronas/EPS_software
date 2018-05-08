@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>EPS_MSP_EXP432P401R_tirtos_gcc</name>
+	<name>EPS_software</name>
 	<comment></comment>
 	<projects>
 		<project>tirtos_builds_MSP_EXP432P401R_release_gcc</project>
@@ -81,6 +81,16 @@
 			<name>ttc/hldlc.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/core/hldlc.c</locationURI>
+		</link>
+		<link>
+			<name>ttc/housekeeping.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/delfiPQ/EPS/housekeeping.c</locationURI>
+		</link>
+		<link>
+			<name>ttc/housekeeping_service.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/services/housekeeping_service.c</locationURI>
 		</link>
 		<link>
 			<name>ttc/osal.c</name>
