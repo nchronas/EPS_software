@@ -3,7 +3,6 @@
 	<name>EPS_software</name>
 	<comment></comment>
 	<projects>
-		<project>tirtos_builds_MSP_EXP432P401R_release_gcc</project>
 		<project>tirtos_builds_MSP_EXP432P401R_debug_gcc</project>
 	</projects>
 	<buildSpec>
@@ -36,111 +35,6 @@
 			<name>EPS_Board.c</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/EPS_Board.c</locationURI>
-		</link>
-		<link>
-			<name>libs</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>ttc</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>libs/INA226.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/INA226/INA226.c</locationURI>
-		</link>
-		<link>
-			<name>libs/MB85RS256A.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/MB85RS256A/MB85RS256A.c</locationURI>
-		</link>
-		<link>
-			<name>libs/TMP100.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/TMP100/TMP100.c</locationURI>
-		</link>
-		<link>
-			<name>libs/vault.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/delfiPQ/vault.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/devices.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/delfiPQ/EPS/devices.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/hal_uart.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/delfiPQ/HAL/hal_uart.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/hldlc.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/core/hldlc.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/housekeeping.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/delfiPQ/EPS/housekeeping.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/housekeeping_service.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/services/housekeeping_service.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/osal.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/delfiPQ/OSAL/osal.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/packet_engine.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/delfiPQ/packet_engine.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/packet_services.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/core/packet_services.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/packet_utilities.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/core/packet_utilities.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/pkt_pool.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/core/pkt_pool.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/queue.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/core/queue.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/satellite.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/delfiPQ/satellite.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/subsystem.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/delfiPQ/EPS/subsystem.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/sysview.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/core/sysview.c</locationURI>
-		</link>
-		<link>
-			<name>ttc/test_service.c</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Documents/repos/nik/ecss_services/services/test_service.c</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
