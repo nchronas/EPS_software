@@ -75,6 +75,7 @@ void *mainThread(void *arg0)
 
     /* Turn on user LED */
     GPIO_write(PQ9_EN, 1);
+    GPIO_write(PQ9_EN, 0);
 
     /* Turn on subsystem en switches*/
     GPIO_write(SBSYS_EN_SW0, 1);
