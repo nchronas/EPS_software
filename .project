@@ -31,10 +31,5 @@
 			<type>1</type>
 			<locationURI>COM_TI_SIMPLELINK_MSP432_SDK_INSTALL_DIR/source/ti/boards/MSP_EXP432P401R/Board.html</locationURI>
 		</link>
-		<link>
-			<name>EPS_Board.c</name>
-			<type>1</type>
-			<locationURI>PROJECT_LOC/EPS_Board.c</locationURI>
-		</link>
 	</linkedResources>
 </projectDescription>
