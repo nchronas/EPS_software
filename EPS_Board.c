@@ -36,7 +36,7 @@
 //
 //*****************************************************************************
 
-// This file was automatically generated on 23/02/2018 at 14:55:57
+// This file was automatically generated on 02/05/2018 at 14:09:16
 // by TI PinMux version 4.0.1511 
 //
 //*****************************************************************************
@@ -261,8 +261,8 @@ const SPIMSP432DMA_HWAttrsV1 spiMSP432DMAHWAttrs[Board_SPICOUNT] = {
 const SPI_Config SPI_config[Board_SPICOUNT] = {
     {
         .fxnTablePtr = &SPIMSP432DMA_fxnTable,
-        .object = &spiMSP432DMAObjects[EPS_FRAM],
-        .hwAttrs = &spiMSP432DMAHWAttrs[EPS_FRAM]
+        .object = &spiMSP432DMAObjects[FRAM],
+        .hwAttrs = &spiMSP432DMAHWAttrs[FRAM]
     },
 };
 

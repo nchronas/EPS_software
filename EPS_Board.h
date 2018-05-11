@@ -36,7 +36,7 @@
 //
 //*****************************************************************************
 
-// This file was automatically generated on 23/02/2018 at 14:55:57
+// This file was automatically generated on 02/05/2018 at 14:09:16
 // by TI PinMux version 4.0.1511 
 //
 //*****************************************************************************
@@ -102,7 +102,7 @@ typedef enum Board_I2CName {
  *  @brief  Enum of SPI names on the MSP_EXP432P401R dev board
  */
 typedef enum Board_SPIName {
-    EPS_FRAM = 0,
+    FRAM = 0,
    Board_SPICOUNT
 } Board_SPIName;
 
