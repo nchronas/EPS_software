@@ -59,7 +59,7 @@
 #include "TMP100.h"
 
 extern UART_Handle uart_dbg_bus;
-
+extern UART_Handle uart_pq9_bus;
 
 /*
  *  ======== mainThread ========
