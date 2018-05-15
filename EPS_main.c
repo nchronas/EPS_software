@@ -39,14 +39,8 @@
 /* Driver Header files */
 #include <ti/drivers/GPIO.h>
 #include <ti/drivers/UART.h>
-
-#include <ti/drivers/ADC.h>
-#include <ti/drivers/ADCBuf.h>
-#include <ti/drivers/GPIO.h>
 #include <ti/drivers/I2C.h>
-#include <ti/drivers/PWM.h>
 #include <ti/drivers/SPI.h>
-#include <ti/drivers/UART.h>
 #include <ti/drivers/Watchdog.h>
 #include <ti/drivers/Timer.h>
 
