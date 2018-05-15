@@ -48,6 +48,7 @@
 #include <ti/drivers/SPI.h>
 #include <ti/drivers/UART.h>
 #include <ti/drivers/Watchdog.h>
+#include <ti/drivers/Timer.h>
 
 /* Example/Board Header files */
 #include "EPS_Board.h"
@@ -72,6 +73,7 @@ void *mainThread(void *arg0)
     UART_init();
     I2C_init();
     SPI_init();
+    Timer_init();
 
     /* Turn on user LED */
     GPIO_write(PQ9_EN, 1);
