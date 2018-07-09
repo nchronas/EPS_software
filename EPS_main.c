@@ -56,6 +56,8 @@
 extern UART_Handle uart_dbg_bus;
 extern UART_Handle uart_pq9_bus;
 
+bool start_flag = false;
+
 /*
  *  ======== mainThread ========
  */
@@ -70,7 +72,7 @@ void *mainThread(void *arg0)
     Timer_init();
 
     /* Turn on user LED */
-    GPIO_write(PQ9_EN, 1);
+    //GPIO_write(PQ9_EN, 1);
     GPIO_write(PQ9_EN, 0);
 
     /* Turn on subsystem en switches*/
@@ -82,11 +84,24 @@ void *mainThread(void *arg0)
     /*ECSS services start*/
     pkt_pool_INIT();
     device_init();
+    init_parameters();
+
+    uint16_t boot_counter;
+    get_parameter(EPS_boot_counter_param_id, &boot_counter);
+    boot_counter++;
+    set_parameter(EPS_boot_counter_param_id, &boot_counter);
+
+
+    start_flag = true;
 
     /* Loop forever echoing */
-
-
     while (1) {
+
+        uint32_t var;
+        char param_size;
+            get_parameter(testing_4_param_id, &var, &param_size);
+
+
 
         update_device(EPS_UR_MON_DEV_ID);
         usleep(1);
@@ -109,7 +124,10 @@ void *mainThread(void *arg0)
         //sol inas
         //sol temps
 
-        //ltc
+        update_device(BATT_CHARGE_DEV_ID);
+        usleep(1);
+
+        eps_safety_check();
 
         usleep(100);
 
@@ -120,20 +138,38 @@ void *mainThread(void *arg0)
  *  This thread runs on a higher priority, since wdg pin
  *  has to be ready for master.
  */
-void *ecssThread(void *arg0)
+void *pqReceiveThread(void *arg0)
 {
 
-    sleep(1);
+    while(!start_flag) {
+        usleep(1000);
+    }
 
     /* Loop forever */
     while (1) {
          import_pkt();
-         export_pkt();
-         usleep(1000);
+         usleep(1);
     }
 
     return (NULL);
 }
+
+void *pqTransmitThread(void *arg0)
+{
+
+    while(!start_flag) {
+        usleep(1000);
+    }
+
+    /* Loop forever */
+    while (1) {
+         export_pkt();
+         usleep(1);
+    }
+
+    return (NULL);
+}
+
 
 char msg[100];
 
@@ -144,6 +180,7 @@ void *senThread(void *arg0)
 {
 
     struct ina_device ina_dev;
+    struct ltc_device ltc_dev;
 
     sprintf(msg, "Reset\n");
     UART_write(uart_dbg_bus, msg, strlen(msg));
@@ -164,6 +201,10 @@ void *senThread(void *arg0)
 
             sleep(1);
         }
+
+        read_device_parameters(BATT_CHARGE_DEV_ID, &ltc_dev);
+       // sprintf(msg, "LTC temp: %d\n", (int)ltc_dev.temp);
+       // UART_write(uart_dbg_bus, msg, strlen(msg));
 
     }
 

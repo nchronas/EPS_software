@@ -318,6 +318,7 @@ const UARTMSP432_BaudrateConfig uartMSP432Baudrates[] = {
         .hwRegUCBRSx = 32,
         .oversampling = 1
     },
+    {500000, 12000000,  1,  8,   0, 1},
     {115200, 6000000,   3,  4,   2, 1},
     {115200, 3000000,   1, 10,   0, 1},
     {9600,   12000000, 78,  2,   0, 1},
@@ -340,6 +341,7 @@ const UARTMSP432_HWAttrsV1 uartMSP432HWAttrs[Board_UARTCOUNT] = {
         .ringBufSize = sizeof(uartMSP432RingBuffer[PQ9]),
         .rxPin = UARTMSP432_P9_6_UCA3RXD,
         .txPin = UARTMSP432_P9_7_UCA3TXD,
+        .uartEUSCIMultiProcMode = true,
     },
     {
         .baseAddr = EUSCI_A0_BASE,
