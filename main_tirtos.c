@@ -94,64 +94,64 @@ int main(void)
     }
 
     pthread_t           thread_pqReceive;
-      pthread_attr_t      attrs2;
-      struct sched_param  priParam2;
+    pthread_attr_t      attrs2;
+    struct sched_param  priParam2;
 
-      /* Set priority and stack size attributes */
-      pthread_attr_init(&attrs2);
-      priParam.sched_priority = 2;
+    /* Set priority and stack size attributes */
+    pthread_attr_init(&attrs2);
+    priParam.sched_priority = 2;
 
-      detachState = PTHREAD_CREATE_DETACHED;
-      retc = pthread_attr_setdetachstate(&attrs2, detachState);
-      if (retc != 0) {
-          /* pthread_attr_setdetachstate() failed */
-          while (1);
-      }
+    detachState = PTHREAD_CREATE_DETACHED;
+    retc = pthread_attr_setdetachstate(&attrs2, detachState);
+    if (retc != 0) {
+        /* pthread_attr_setdetachstate() failed */
+        while (1);
+    }
 
-      pthread_attr_setschedparam(&attrs2, &priParam2);
+    pthread_attr_setschedparam(&attrs2, &priParam2);
 
-      retc |= pthread_attr_setstacksize(&attrs2, 1024);
-      if (retc != 0) {
-          /* pthread_attr_setstacksize() failed */
-          while (1);
-      }
+    retc |= pthread_attr_setstacksize(&attrs2, 1024);
+    if (retc != 0) {
+        /* pthread_attr_setstacksize() failed */
+        while (1);
+    }
 
-      /* Create ecss thread */
-      retc = pthread_create(&thread_pqReceive, &attrs2, pqReceiveThread, (void* )0);
-      if (retc != 0) {
-          /* pthread_create() failed */
-          while (1);
-       }
+    /* Create ecss thread */
+    retc = pthread_create(&thread_pqReceive, &attrs2, pqReceiveThread, (void* )0);
+    if (retc != 0) {
+        /* pthread_create() failed */
+        while (1);
+     }
 
-       pthread_t           thread_pqTransmit;
-       pthread_attr_t      attrs3;
-       struct sched_param  priParam3;
+     pthread_t           thread_pqTransmit;
+     pthread_attr_t      attrs3;
+     struct sched_param  priParam3;
 
-       /* Set priority and stack size attributes */
-       pthread_attr_init(&attrs3);
-       priParam.sched_priority = 3;
+     /* Set priority and stack size attributes */
+     pthread_attr_init(&attrs3);
+     priParam.sched_priority = 3;
 
-       detachState = PTHREAD_CREATE_DETACHED;
-       retc = pthread_attr_setdetachstate(&attrs3, detachState);
-       if (retc != 0) {
-           /* pthread_attr_setdetachstate() failed */
-           while (1);
-       }
+     detachState = PTHREAD_CREATE_DETACHED;
+     retc = pthread_attr_setdetachstate(&attrs3, detachState);
+     if (retc != 0) {
+         /* pthread_attr_setdetachstate() failed */
+         while (1);
+     }
 
-       pthread_attr_setschedparam(&attrs3, &priParam3);
+     pthread_attr_setschedparam(&attrs3, &priParam3);
 
-       retc |= pthread_attr_setstacksize(&attrs3, 1024);
-       if (retc != 0) {
-           /* pthread_attr_setstacksize() failed */
-           while (1);
-       }
+     retc |= pthread_attr_setstacksize(&attrs3, 1024);
+     if (retc != 0) {
+         /* pthread_attr_setstacksize() failed */
+         while (1);
+     }
 
-       /* Create ecss thread */
-       retc = pthread_create(&thread_pqTransmit, &attrs3, pqTransmitThread, (void* )0);
-       if (retc != 0) {
-           /* pthread_create() failed */
-           while (1);
-        }
+     /* Create ecss thread */
+     retc = pthread_create(&thread_pqTransmit, &attrs3, pqTransmitThread, (void* )0);
+     if (retc != 0) {
+         /* pthread_create() failed */
+         while (1);
+    }
 
     BIOS_start();
 

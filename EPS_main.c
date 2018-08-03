@@ -43,6 +43,7 @@
 #include <ti/drivers/SPI.h>
 #include <ti/drivers/Watchdog.h>
 #include <ti/drivers/Timer.h>
+#include <ti/drivers/ADC.h>
 
 /* Example/Board Header files */
 #include "EPS_Board.h"
@@ -52,6 +53,10 @@
 
 #include "INA226.h"
 #include "TMP100.h"
+
+#include "parameters.h"
+
+#include "osal.h"
 
 extern UART_Handle uart_dbg_bus;
 extern UART_Handle uart_pq9_bus;
@@ -70,6 +75,11 @@ void *mainThread(void *arg0)
     I2C_init();
     SPI_init();
     Timer_init();
+    ADC_init();
+    Watchdog_init();
+
+    //in Hz
+    uint32_t freq = CS_getSMCLK();
 
     /* Turn on user LED */
     //GPIO_write(PQ9_EN, 1);
@@ -85,11 +95,18 @@ void *mainThread(void *arg0)
     pkt_pool_INIT();
     device_init();
     init_parameters();
+    OSAL_init();
 
-    uint16_t boot_counter;
-    get_parameter(EPS_boot_counter_param_id, &boot_counter);
+    uint16_t boot_counter=0, size;
+    uint8_t buf[4];
+
+    //get_parameter(EPS_boot_counter_param_id, &boot_counter, buf, &size);
+    //boot_counter=0;
+    //set_parameter(EPS_boot_counter_param_id, boot_counter);
+
+    get_parameter(EPS_boot_counter_param_id, &boot_counter, buf, &size);
     boot_counter++;
-    set_parameter(EPS_boot_counter_param_id, &boot_counter);
+    set_parameter(EPS_boot_counter_param_id, boot_counter);
 
 
     start_flag = true;
@@ -97,11 +114,11 @@ void *mainThread(void *arg0)
     /* Loop forever echoing */
     while (1) {
 
-        uint32_t var;
-        char param_size;
-            get_parameter(testing_4_param_id, &var, &param_size);
+        //uint32_t var;
+        //uint16_t param_size;
+        //get_parameter(testing_4_param_id, &var, &param_size);
 
-
+        set_parameter(SBSYS_reset_clr_int_wdg_param_id, NULL);
 
         update_device(EPS_UR_MON_DEV_ID);
         usleep(1);
@@ -109,22 +126,46 @@ void *mainThread(void *arg0)
         update_device(EPS_DC_MON_DEV_ID);
         usleep(1);
 
-        update_device(EPS_SU_MON_DEV_ID);
+        update_device(EPS_V1_MON_DEV_ID);
         usleep(1);
 
-        update_device(EPS_OBC_MON_DEV_ID);
+        update_device(EPS_V2_MON_DEV_ID);
         usleep(1);
 
-        update_device(EPS_COMMS_MON_DEV_ID);
+        update_device(EPS_V3_MON_DEV_ID);
         usleep(1);
 
-        update_device(EPS_ADCS_MON_DEV_ID);
+        update_device(EPS_V4_MON_DEV_ID);
         usleep(1);
-
-        //sol inas
-        //sol temps
 
         update_device(BATT_CHARGE_DEV_ID);
+        usleep(1);
+
+        update_device(SOL_YP_MON_DEV_ID);
+        usleep(1);
+
+        update_device(SOL_YM_MON_DEV_ID);
+        usleep(1);
+
+        update_device(SOL_XP_MON_DEV_ID);
+        usleep(1);
+
+        update_device(SOL_XM_MON_DEV_ID);
+        usleep(1);
+
+        update_device(SOL_YP_TEMP_DEV_ID);
+        usleep(1);
+
+        update_device(SOL_YM_TEMP_DEV_ID);
+        usleep(1);
+
+        update_device(SOL_XP_TEMP_DEV_ID);
+        usleep(1);
+
+        update_device(SOL_XM_TEMP_DEV_ID);
+        usleep(1);
+
+        update_device(EPS_INT_TEMP_DEV_ID);
         usleep(1);
 
         eps_safety_check();
@@ -194,10 +235,10 @@ void *senThread(void *arg0)
         //ltc
 
         //SOL_XM_MON_DEV_ID
-        for(uint8_t i=EPS_OBC_MON_DEV_ID; i <= EPS_UR_MON_DEV_ID; i++) {
-            read_device_parameters(i, &ina_dev);
-            sprintf(msg, "INA: %d, C %d, V %d, W %d\n", i, (int)(ina_dev.current*1000), (int)ina_dev.voltage, (int)ina_dev.power);
-            UART_write(uart_dbg_bus, msg, strlen(msg));
+        for(uint8_t i=EPS_V1_MON_DEV_ID; i <= EPS_UR_MON_DEV_ID; i++) {
+            //read_device_parameters(i, &ina_dev);
+            //sprintf(msg, "INA: %d, C %d, V %d, W %d\n", i, (int)(ina_dev.current*1000), (int)ina_dev.voltage, (int)ina_dev.power);
+            //UART_write(uart_dbg_bus, msg, strlen(msg));
 
             sleep(1);
         }
