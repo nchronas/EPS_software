@@ -58,7 +58,7 @@ extern void *senThread(void *arg0);
  *  ======== main ========
  */
 int main(void)
-{
+ {
     pthread_t           thread;
     pthread_attr_t      attrs;
     struct sched_param  priParam;
@@ -110,7 +110,7 @@ int main(void)
 
     pthread_attr_setschedparam(&attrs2, &priParam2);
 
-    retc |= pthread_attr_setstacksize(&attrs2, 1024);
+    retc |= pthread_attr_setstacksize(&attrs2, 1514);
     if (retc != 0) {
         /* pthread_attr_setstacksize() failed */
         while (1);
