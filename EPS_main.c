@@ -78,12 +78,25 @@ void *mainThread(void *arg0)
     ADC_init();
     Watchdog_init();
 
+    uint32_t wdg_time = OSAL_sys_GetTick();
+    uint32_t now_time;
+
+    GPIO_write(EXT_WDG, 1);
+    usleep(100);
+    GPIO_write(EXT_WDG, 0);
+
     //in Hz
     uint32_t freq = CS_getSMCLK();
 
     /* Turn on user LED */
     //GPIO_write(PQ9_EN, 1);
     GPIO_write(PQ9_EN, 0);
+
+    /* Turn on subsystem en switches*/
+    GPIO_write(SBSYS_EN_SW0, 0);
+    GPIO_write(SBSYS_EN_SW1, 0);
+    GPIO_write(SBSYS_EN_SW2, 0);
+    GPIO_write(SBSYS_EN_SW3, 0);
 
     /* Turn on subsystem en switches*/
     GPIO_write(SBSYS_EN_SW0, 1);
@@ -115,6 +128,14 @@ void *mainThread(void *arg0)
 
     /* Loop forever echoing */
     while (1) {
+
+        now_time = OSAL_sys_GetTick();
+        if(now_time - wdg_time > 16500) {
+          GPIO_write(EXT_WDG, 1);
+          usleep(34800);
+          GPIO_write(EXT_WDG, 0);
+          wdg_time = OSAL_sys_GetTick();
+        }
 
         //uint32_t var;
         //uint16_t param_size;
